@@ -21,7 +21,7 @@
 
 @layer components {
     .sid-container {
-        @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+        @apply mx-auto w-full max-w-[1560px] px-4 sm:px-6 lg:px-8;
     }
 
     .sid-card {
@@ -46,5 +46,31 @@
 
     .sid-skeleton {
         @apply animate-pulse rounded-sid bg-lamongan-muted;
+    }
+
+    .sid-marquee {
+        @apply min-w-full whitespace-nowrap;
+        animation: sid-marquee 24s linear infinite;
+    }
+
+    .sid-marquee:hover {
+        animation-play-state: paused;
+    }
+}
+
+@keyframes sid-marquee {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sid-marquee {
+        animation: none;
+        transform: none;
     }
 }

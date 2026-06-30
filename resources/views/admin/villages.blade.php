@@ -32,7 +32,9 @@
                                 <span class="sid-badge {{ $village['status'] === 'Aktif' ? 'bg-lamongan-success text-white' : 'bg-lamongan-muted text-lamongan-body' }}">{{ $village['status'] }}</span>
                             </td>
                             <td class="py-4 pr-4">{{ $village['operator'] }}</td>
-                            <td class="py-4 pr-4"><button class="sid-button-secondary" type="button">Kelola</button></td>
+                            <td class="py-4 pr-4">
+                                <a href="{{ route('admin.module.show', 'data-desa') }}" class="sid-button-secondary">Kelola</a>
+                            </td>
                         </tr>
                     @empty
                         <tr>

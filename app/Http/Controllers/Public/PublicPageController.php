@@ -81,6 +81,16 @@ class PublicPageController extends Controller
                 'Lamongan', 'Laren', 'Maduran', 'Mantup', 'Modo', 'Ngimbang',
                 'Paciran', 'Pucuk',
             ],
+            'mapPoints' => [
+                ['name' => 'Babat', 'x' => 19, 'y' => 34, 'villages' => 23, 'population' => '93.420'],
+                ['name' => 'Brondong', 'x' => 42, 'y' => 16, 'villages' => 10, 'population' => '76.120'],
+                ['name' => 'Paciran', 'x' => 58, 'y' => 18, 'villages' => 17, 'population' => '98.450'],
+                ['name' => 'Lamongan', 'x' => 48, 'y' => 54, 'villages' => 20, 'population' => '72.810'],
+                ['name' => 'Deket', 'x' => 62, 'y' => 61, 'villages' => 17, 'population' => '49.380'],
+                ['name' => 'Kembangbahu', 'x' => 36, 'y' => 70, 'villages' => 18, 'population' => '44.860'],
+                ['name' => 'Ngimbang', 'x' => 17, 'y' => 76, 'villages' => 19, 'population' => '46.250'],
+                ['name' => 'Karanggeneng', 'x' => 72, 'y' => 42, 'villages' => 18, 'population' => '51.760'],
+            ],
             'stats' => [
                 ['label' => 'Kecamatan', 'value' => '18'],
                 ['label' => 'Desa dan kelurahan', 'value' => '400+'],

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DesaController;
+use App\Http\Controllers\Admin\ModuleController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Public\PublicPageController;
 use Illuminate\Support\Facades\Route;
@@ -30,4 +31,5 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', DashboardController::class)->name('dashboard');
     Route::resource('desa', DesaController::class)->only(['index']);
+    Route::get('/modul/{module}', [ModuleController::class, 'show'])->name('module.show');
 });

@@ -18,10 +18,19 @@ class DesaController extends Controller
             ['name' => 'Kembangbahu', 'district' => 'Kembangbahu', 'status' => 'Aktif', 'operator' => 'Sudah ditugaskan'],
         ]);
 
+        $query = $request->string('q')->toString();
+
+        if ($query !== '') {
+            $villages = $villages->filter(fn (array $village): bool =>
+                str_contains(strtolower($village['name']), strtolower($query)) ||
+                str_contains(strtolower($village['district']), strtolower($query))
+            )->values();
+        }
+
         return view('admin.villages', [
             'title' => 'Data desa',
             'villages' => $villages,
-            'query' => $request->string('q')->toString(),
+            'query' => $query,
         ]);
     }
 }
