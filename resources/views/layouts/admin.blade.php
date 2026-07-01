@@ -32,6 +32,16 @@
         ];
     @endphp
 
+    @php
+        if (auth()->check() && auth()->user()->isSuperAdmin()) {
+            $adminNavigation['Super Admin'] = [
+                ['label' => 'Informasi utama', 'route' => 'admin.module.show', 'params' => ['informasi-utama']],
+                ['label' => 'Kegiatan berjalan', 'route' => 'admin.module.show', 'params' => ['kegiatan-berjalan']],
+                ['label' => 'Berita utama', 'route' => 'admin.module.show', 'params' => ['berita-utama']],
+            ];
+        }
+    @endphp
+
     <div class="min-h-screen lg:grid lg:grid-cols-[280px_1fr]">
         <aside class="border-r border-lamongan-border bg-white">
             <div class="flex min-h-24 items-center gap-3 border-b border-lamongan-border px-5">

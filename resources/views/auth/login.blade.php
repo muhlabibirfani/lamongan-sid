@@ -1,10 +1,9 @@
-@extends('layouts.public')
+@extends('layouts.auth')
 
 @section('content')
-    <section class="sid-container py-16">
-        <div class="sid-card mx-auto max-w-md p-6">
-            <h1 class="text-2xl font-bold text-lamongan-primary">Masuk panel admin</h1>
-            <p class="mt-2 text-sm leading-6">Masuk menggunakan akun operator desa, petugas kecamatan, atau admin kabupaten yang telah terdaftar.</p>
+    <div class="sid-card bg-white p-6 shadow-sm">
+        <h1 class="text-2xl font-bold text-lamongan-primary">Masuk panel admin</h1>
+        <p class="mt-2 text-sm leading-6 text-lamongan-body/80">Masuk menggunakan akun operator desa, petugas kecamatan, atau admin kabupaten yang telah terdaftar.</p>
 
             @if (session('status'))
                 <div class="mt-4 rounded-sid border border-lamongan-border bg-lamongan-muted px-4 py-3 text-sm text-lamongan-body">

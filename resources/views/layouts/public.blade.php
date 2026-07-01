@@ -56,7 +56,7 @@
                 <span>Kabupaten Lamongan, Provinsi Jawa Timur</span>
                 <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
                     <a href="{{ route('services') }}" class="text-white hover:text-lamongan-accent">Layanan Mandiri</a>
-                    <a href="{{ route('login') }}" class="text-white hover:text-lamongan-accent">Masuk operator</a>
+                    <a href="{{ route('login') }}" class="rounded-sid border border-white/50 bg-white/10 px-3 py-1.5 text-white transition hover:bg-white hover:text-lamongan-primary">Login Admin</a>
                 </div>
             </div>
         </div>
@@ -91,11 +91,30 @@
                         </div>
                     @endforeach
                 </nav>
-                <nav class="grid grid-cols-2 gap-2 py-3 text-xs font-semibold sm:grid-cols-4 sm:text-sm lg:hidden" aria-label="Navigasi utama mobile">
-                    @foreach ($mainNavigation as $item)
-                        <a href="{{ route($item['route']) }}" class="rounded-sid border border-lamongan-border px-2 py-2 text-center leading-snug {{ request()->routeIs($item['route']) ? 'bg-lamongan-primary text-white' : 'bg-white text-lamongan-body' }}">{{ $item['label'] }}</a>
-                    @endforeach
-                </nav>
+                <div class="py-3 lg:hidden">
+                    <button
+                        type="button"
+                        class="inline-flex w-full items-center justify-between rounded-sid border border-lamongan-border bg-white px-4 py-2.5 text-sm font-bold text-lamongan-primary"
+                        data-mobile-menu-button
+                        aria-expanded="false"
+                        aria-controls="mobile-main-menu"
+                    >
+                        <span>Menu</span>
+                        <span aria-hidden="true">☰</span>
+                    </button>
+                    <nav id="mobile-main-menu" class="mt-3 hidden rounded-sid border border-lamongan-border bg-white p-2 text-sm font-semibold shadow-sm" data-mobile-menu aria-label="Navigasi utama mobile">
+                        @foreach ($mainNavigation as $item)
+                            <a href="{{ route($item['route']) }}" class="block rounded-sid px-3 py-2.5 {{ request()->routeIs($item['route']) ? 'bg-lamongan-primary text-white' : 'text-lamongan-body hover:bg-lamongan-muted hover:text-lamongan-primary' }}">{{ $item['label'] }}</a>
+                            @if (! empty($item['children']))
+                                <div class="mb-1 ml-3 border-l border-lamongan-border pl-2">
+                                    @foreach ($item['children'] as $child)
+                                        <a href="{{ route($child['route']) }}" class="block rounded-sid px-3 py-2 text-xs text-lamongan-neutral hover:bg-lamongan-muted hover:text-lamongan-primary">{{ $child['label'] }}</a>
+                                    @endforeach
+                                </div>
+                            @endif
+                        @endforeach
+                    </nav>
+                </div>
             </div>
         </div>
         <div class="border-t border-lamongan-border bg-lamongan-muted">

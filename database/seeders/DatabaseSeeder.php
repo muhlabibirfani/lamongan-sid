@@ -27,6 +27,15 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
+        User::updateOrCreate(
+            ['email' => 'superadmin@lamongan.go.id'],
+            [
+                'name' => 'Super Admin Lamongan',
+                'password' => Hash::make('superadmin123'),
+                'role' => 'super_admin',
+            ]
+        );
+
         $districts = [
             'Babat', 'Bluluk', 'Brondong', 'Deket', 'Glagah', 'Kalitengah',
             'Karangbinangun', 'Karanggeneng', 'Kedungpring', 'Kembangbahu',

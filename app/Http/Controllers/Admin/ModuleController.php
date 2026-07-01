@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Desa;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -97,6 +98,39 @@ class ModuleController extends Controller
             ],
             'items' => ['Pengumuman layanan', 'Berita desa', 'Agenda kegiatan'],
         ],
+        'informasi-utama' => [
+            'title' => 'Informasi utama',
+            'group' => 'Super Admin',
+            'description' => 'Tambahkan pengumuman penting dan pesan utama kabupaten kepada publik.',
+            'metrics' => [
+                ['label' => 'Pengumuman aktif', 'value' => '6'],
+                ['label' => 'Pesan utama', 'value' => '3'],
+                ['label' => 'Target pembaca', 'value' => 'Semua warga'],
+            ],
+            'items' => ['Tambahkan pengumuman kabupaten', 'Atur pesan prioritas', 'Publikasikan notifikasi terbaru'],
+        ],
+        'kegiatan-berjalan' => [
+            'title' => 'Kegiatan berjalan',
+            'group' => 'Super Admin',
+            'description' => 'Pantau dan tambahkan kegiatan kabupaten yang sedang berjalan secara real time.',
+            'metrics' => [
+                ['label' => 'Program aktif', 'value' => '8'],
+                ['label' => 'Kegiatan hari ini', 'value' => '5'],
+                ['label' => 'Laporkan status', 'value' => 'Segera'],
+            ],
+            'items' => ['Tambah kegiatan baru', 'Update progres lapangan', 'Saring berdasarkan wilayah'],
+        ],
+        'berita-utama' => [
+            'title' => 'Berita utama',
+            'group' => 'Super Admin',
+            'description' => 'Kelola headline berita kabupaten dan tampilkan sorotan utama pada halaman publik.',
+            'metrics' => [
+                ['label' => 'Headline aktif', 'value' => '4'],
+                ['label' => 'Kontributor', 'value' => '12'],
+                ['label' => 'Dipromosikan', 'value' => '2'],
+            ],
+            'items' => ['Atur berita unggulan', 'Kelola banner headline', 'Publikasikan highlight kabupaten'],
+        ],
         'lapak-umkm' => [
             'title' => 'Lapak UMKM',
             'group' => 'Publikasi',
@@ -136,11 +170,30 @@ class ModuleController extends Controller
     {
         abort_unless(isset(self::MODULES[$module]), 404);
 
+        $moduleData = self::MODULES[$module];
+
+        if ($module === 'data-desa') {
+            $moduleData['metrics'] = $this->getDataDesaMetrics();
+        }
+
         return view('admin.module', [
-            'title' => self::MODULES[$module]['title'],
+            'title' => $moduleData['title'],
             'moduleKey' => $module,
-            'module' => self::MODULES[$module],
+            'module' => $moduleData,
             'query' => $request->string('q')->toString(),
         ]);
+    }
+
+    private function getDataDesaMetrics(): array
+    {
+        $total = Desa::count();
+        $active = Desa::where('status', 'Aktif')->count();
+        $pending = Desa::where('status', 'Pending')->count();
+
+        return [
+            ['label' => 'Desa/kelurahan', 'value' => (string) $total],
+            ['label' => 'Desa aktif', 'value' => (string) $active],
+            ['label' => 'Perlu verifikasi', 'value' => (string) $pending],
+        ];
     }
 }

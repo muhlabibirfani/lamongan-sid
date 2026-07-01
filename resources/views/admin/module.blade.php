@@ -28,10 +28,15 @@
                     <h3 class="text-lg font-bold text-lamongan-primary">Daftar kerja modul</h3>
                     <p class="mt-1 text-sm">Tampilan awal agar navigasi admin sudah aktif dan siap dikembangkan ke CRUD penuh.</p>
                 </div>
-                <form class="flex gap-2">
-                    <input class="sid-input w-72" name="q" value="{{ $query }}" placeholder="Cari data modul">
-                    <button class="sid-button" type="submit">Filter</button>
-                </form>
+                <div class="flex flex-wrap items-center gap-2">
+                    @if(auth()->check() && auth()->user()->isSuperAdmin() && in_array($moduleKey, ['informasi-utama', 'kegiatan-berjalan', 'berita-utama'], true))
+                        <a href="#" class="sid-button">Tambah konten baru</a>
+                    @endif
+                    <form class="flex gap-2">
+                        <input class="sid-input w-72" name="q" value="{{ $query }}" placeholder="Cari data modul">
+                        <button class="sid-button" type="submit">Filter</button>
+                    </form>
+                </div>
             </div>
 
             <div class="mt-5 overflow-x-auto">

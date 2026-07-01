@@ -3,12 +3,12 @@
 @section('content')
     <section class="sid-container py-8">
         <div class="sid-card p-5">
-            <form class="grid gap-3 md:grid-cols-[1fr_220px_160px]">
-                <input class="sid-input" name="q" placeholder="Cari berita atau pengumuman">
+            <form class="grid gap-3 md:grid-cols-[1fr_220px_160px]" action="{{ route('articles') }}" method="GET">
+                <input class="sid-input" name="q" placeholder="Cari berita atau pengumuman" value="{{ $searchQuery ?? '' }}">
                 <select class="sid-input" name="kecamatan">
-                    <option>Semua kecamatan</option>
+                    <option value="">Semua kecamatan</option>
                     @foreach ($districts as $district)
-                        <option>{{ $district }}</option>
+                        <option value="{{ $district }}" {{ isset($selectedKecamatan) && $selectedKecamatan === $district ? 'selected' : '' }}>{{ $district }}</option>
                     @endforeach
                 </select>
                 <button class="sid-button" type="submit">Terapkan filter</button>

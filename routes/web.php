@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DesaController;
 use App\Http\Controllers\Admin\ModuleController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Public\ComplaintController;
 use App\Http\Controllers\Public\PublicPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,8 @@ Route::controller(PublicPageController::class)->group(function () {
     Route::get('/pengaduan', 'complaints')->name('complaints');
     Route::get('/layanan-mandiri', 'services')->name('services');
 });
+
+Route::post('/pengaduan', [ComplaintController::class, 'store'])->name('complaints.store');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');

@@ -25,11 +25,11 @@
                     <h2 class="text-lg font-bold text-lamongan-primary">Ringkasan peta</h2>
                     <div class="mt-4 grid grid-cols-2 gap-3">
                         <div class="rounded-sid border border-lamongan-border bg-lamongan-muted p-3">
-                            <p class="text-2xl font-bold text-lamongan-primary">18</p>
+                            <p class="text-2xl font-bold text-lamongan-primary">{{ $totalDistricts }}</p>
                             <p class="text-xs">Kecamatan</p>
                         </div>
                         <div class="rounded-sid border border-lamongan-border bg-lamongan-muted p-3">
-                            <p class="text-2xl font-bold text-lamongan-primary">400+</p>
+                            <p class="text-2xl font-bold text-lamongan-primary">{{ $totalDesa }}</p>
                             <p class="text-xs">Desa/kelurahan</p>
                         </div>
                     </div>

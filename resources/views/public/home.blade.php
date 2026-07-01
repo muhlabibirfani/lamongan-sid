@@ -30,11 +30,14 @@
                     </div>
                 </div>
                 <div class="sid-card p-5">
-                    <h2 class="text-lg font-bold text-lamongan-primary">Panel operator</h2>
-                    <p class="mt-2 text-sm leading-6">Masuk untuk mengelola data desa, artikel, layanan, dan modul administrasi.</p>
-                    <a href="{{ auth()->check() ? route('admin.dashboard') : route('login') }}" class="sid-button mt-4 w-full">
-                        {{ auth()->check() ? 'Buka dashboard admin' : 'Login admin' }}
-                    </a>
+                    <h2 class="text-lg font-bold text-lamongan-primary">Layanan warga</h2>
+                    <p class="mt-2 text-sm leading-6">Akses cepat ke informasi, layanan publik, pengaduan, dan peta desa tanpa harus masuk ke panel operator.</p>
+                    <div class="mt-4 grid gap-2">
+                        <a href="{{ route('services') }}" class="rounded-sid border border-lamongan-border px-4 py-3 text-sm font-semibold text-lamongan-body hover:border-lamongan-primary hover:text-lamongan-primary">Layanan mandiri</a>
+                        <a href="{{ route('complaints') }}" class="rounded-sid border border-lamongan-border px-4 py-3 text-sm font-semibold text-lamongan-body hover:border-lamongan-primary hover:text-lamongan-primary">Pengaduan warga</a>
+                        <a href="{{ route('map') }}" class="rounded-sid border border-lamongan-border px-4 py-3 text-sm font-semibold text-lamongan-body hover:border-lamongan-primary hover:text-lamongan-primary">Peta wilayah</a>
+                        <a href="{{ route('lapak') }}" class="rounded-sid border border-lamongan-border px-4 py-3 text-sm font-semibold text-lamongan-body hover:border-lamongan-primary hover:text-lamongan-primary">Lapak UMKM</a>
+                    </div>
                 </div>
                 <div class="sid-card p-5">
                     <h2 class="text-lg font-bold text-lamongan-primary">Statistik singkat</h2>
